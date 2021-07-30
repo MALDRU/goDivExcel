@@ -9,32 +9,32 @@ import (
 )
 
 // BASICOS
-const (
-	datosExcel         = "../DATA/DB_POS_290720211130.xlsx"
-	hojaDatosExcel     = "Sheet1"
-	formatoNombre      = "DB_POS_%s_PLA_%s_290720211130"
-	nombreplantilla    = "../../../_PLANTILLAS/DATOS_BASICOS.xlsx"
-	hojaPlantillaExcel = "PLANTILLA"
-	celdaPrograma      = 25
-	celdaPlanEstudio   = 26
-	filaInicial        = 8
-	celdaInicial       = 2
-	celdaFinal         = 24
-)
+// const (
+// 	datosExcel         = "../DATA/DB_POS_290720211130.xlsx"
+// 	hojaDatosExcel     = "Sheet1"
+// 	formatoNombre      = "../OUT/BASICOS/DB_POS_%s_PLA_%s_290720211130"
+// 	nombreplantilla    = "../../../_PLANTILLAS/DATOS_BASICOS.xlsx"
+// 	hojaPlantillaExcel = "PLANTILLA"
+// 	celdaPrograma      = 25
+// 	celdaPlanEstudio   = 26
+// 	filaInicial        = 8
+// 	celdaInicial       = 2
+// 	celdaFinal         = 24
+// )
 
 // DIRECCIONES
-// const (
-// 	datosExcel         = "../DATA/DD_POS_290720211130.xlsx"
-// 	hojaDatosExcel     = "Sheet1"
-// 	formatoNombre      = "DD_POS_%s_PLA_%s_290720211130"
-// 	nombreplantilla    = "../../../_PLANTILLAS/DATOS_DIRECCION.xlsx"
-// 	hojaPlantillaExcel = "Hoja1"
-// 	celdaPrograma      = 14
-// 	celdaPlanEstudio   = 15
-// 	filaInicial        = 7
-// 	celdaInicial       = 2
-// 	celdaFinal         = 13
-// )
+const (
+	datosExcel         = "../DATA/DD_POS_290720211130.xlsx"
+	hojaDatosExcel     = "Sheet1"
+	formatoNombre      = "../OUT/DIRECCIONES/DD_POS_%s_PLA_%s_290720211130"
+	nombreplantilla    = "../../../_PLANTILLAS/DATOS_DIRECCION.xlsx"
+	hojaPlantillaExcel = "Hoja1"
+	celdaPrograma      = 14
+	celdaPlanEstudio   = 15
+	filaInicial        = 7
+	celdaInicial       = 2
+	celdaFinal         = 13
+)
 
 func main() {
 	f, err := excelize.OpenFile(datosExcel)
@@ -88,8 +88,8 @@ func main() {
 				archivos = archivos + 2
 				fmt.Println(nombreArchivoActual)
 				fmt.Println(nombreArchivoActualTXT)
-				programaActual := row[celdaPrograma]
-				planActual := row[celdaPlanEstudio]
+				programaActual = row[celdaPrograma]
+				planActual = row[celdaPlanEstudio]
 				nombreArchivoActual = fmt.Sprintf(fmt.Sprintf("%s.xlsx", formatoNombre), programaActual, planActual)
 				nombreArchivoActualTXT = fmt.Sprintf(fmt.Sprintf("%s.txt", formatoNombre), programaActual, planActual)
 				archivoActual, err = excelize.OpenFile(nombreplantilla)
@@ -110,8 +110,8 @@ func main() {
 				archivos = archivos + 2
 				fmt.Println(nombreArchivoActual)
 				fmt.Println(nombreArchivoActualTXT)
-				programaActual := row[celdaPrograma]
-				planActual := row[celdaPlanEstudio]
+				programaActual = row[celdaPrograma]
+				planActual = row[celdaPlanEstudio]
 				nombreArchivoActual = fmt.Sprintf(fmt.Sprintf("%s.xlsx", formatoNombre), programaActual, planActual)
 				nombreArchivoActualTXT = fmt.Sprintf(fmt.Sprintf("%s.txt", formatoNombre), programaActual, planActual)
 				archivoActual, err = excelize.OpenFile(nombreplantilla)
