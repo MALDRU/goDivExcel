@@ -76,9 +76,6 @@ func main() {
 	limitRows := len(rows) - 1
 
 	for i, row := range rows {
-		if i == 0 {
-			continue
-		}
 		if row[celdaPrograma] != "" {
 			if row[celdaPrograma] != programaActual {
 				c = filaInicial
