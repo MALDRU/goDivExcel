@@ -8,33 +8,33 @@ import (
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 )
 
-// BASICOS
-// const (
-// 	datosExcel         = "../DATA/DB_POS_290720211130.xlsx"
-// 	hojaDatosExcel     = "Sheet1"
-// 	formatoNombre      = "../OUT/BASICOS/DB_POS_%s_PLA_%s_290720211130"
-// 	nombreplantilla    = "../../../_PLANTILLAS/DATOS_BASICOS.xlsx"
-// 	hojaPlantillaExcel = "PLANTILLA"
-// 	celdaPrograma      = 25
-// 	celdaPlanEstudio   = 26
-// 	filaInicial        = 8
-// 	celdaInicial       = 2
-// 	celdaFinal         = 24
-// )
-
-// DIRECCIONES
+//BASICOS
 const (
-	datosExcel         = "../DATA/DD_POS_290720211130.xlsx"
+	datosExcel         = "../DATA/3.xlsx"
 	hojaDatosExcel     = "Sheet1"
-	formatoNombre      = "../OUT/DIRECCIONES/DD_POS_%s_PLA_%s_290720211130"
-	nombreplantilla    = "../../../_PLANTILLAS/DATOS_DIRECCION.xlsx"
-	hojaPlantillaExcel = "Hoja1"
-	celdaPrograma      = 14
-	celdaPlanEstudio   = 15
-	filaInicial        = 7
+	formatoNombre      = "../OUT/BASICOS/DB_POS_%s_PLA_%s_090820211108"
+	nombreplantilla    = "../../../_PLANTILLAS/DATOS_BASICOS.xlsx"
+	hojaPlantillaExcel = "PLANTILLA"
+	celdaPrograma      = 25
+	celdaPlanEstudio   = 26
+	filaInicial        = 8
 	celdaInicial       = 2
-	celdaFinal         = 13
+	celdaFinal         = 24
 )
+
+//DIRECCIONES
+// const (
+// 	datosExcel         = "../DATA/DD_POS_090820211108.xlsx"
+// 	hojaDatosExcel     = "Sheet1"
+// 	formatoNombre      = "../OUT/DIRECCIONES/DD_POS_%s_PLA_%s_090820211108"
+// 	nombreplantilla    = "../../../_PLANTILLAS/DATOS_DIRECCION.xlsx"
+// 	hojaPlantillaExcel = "Hoja1"
+// 	celdaPrograma      = 14
+// 	celdaPlanEstudio   = 15
+// 	filaInicial        = 7
+// 	celdaInicial       = 2
+// 	celdaFinal         = 13
+// )
 
 func main() {
 	f, err := excelize.OpenFile(datosExcel)
@@ -76,6 +76,9 @@ func main() {
 	limitRows := len(rows) - 1
 
 	for i, row := range rows {
+		if i == 0 {
+			continue
+		}
 		if row[celdaPrograma] != "" {
 			if row[celdaPrograma] != programaActual {
 				c = filaInicial
@@ -84,7 +87,25 @@ func main() {
 					fmt.Println(err)
 					return
 				}
-				fTxt.Close()
+
+				// verificar si esta vacio
+				dtll, err := fTxt.Stat()
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+
+				if dtll.Size() == 0 {
+					fmt.Println("Error: No relleno data en archivos: ", nombreArchivoActual)
+					return
+				}
+
+				err = fTxt.Close()
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+
 				archivos = archivos + 2
 				fmt.Println(nombreArchivoActual)
 				fmt.Println(nombreArchivoActualTXT)
@@ -101,12 +122,29 @@ func main() {
 			}
 			if row[celdaPlanEstudio] != planActual {
 				c = filaInicial
-				archivoActual.SaveAs(nombreArchivoActual)
+				err = archivoActual.SaveAs(nombreArchivoActual)
 				if err != nil {
 					fmt.Println(err)
 					return
 				}
-				fTxt.Close()
+
+				// verificar si esta vacio
+				dtll, err := fTxt.Stat()
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+
+				if dtll.Size() == 0 {
+					fmt.Println("Error: No relleno data en archivos")
+					return
+				}
+
+				err = fTxt.Close()
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
 				archivos = archivos + 2
 				fmt.Println(nombreArchivoActual)
 				fmt.Println(nombreArchivoActualTXT)
@@ -134,18 +172,43 @@ func main() {
 						fmt.Println(err)
 						return
 					}
-					fTxt.WriteString(fmt.Sprintf("%s\t", strings.TrimSpace(colCell)))
+					_, err = fTxt.WriteString(fmt.Sprintf("%s", strings.TrimSpace(colCell)))
+					if ind != celdaFinal {
+						_, err = fTxt.WriteString("\t")
+					}
+					if err != nil {
+						fmt.Println(err)
+						return
+					}
 				}
 				ind++
 			}
 			c++
 			if i == limitRows {
-				archivoActual.SaveAs(nombreArchivoActual)
+				err = archivoActual.SaveAs(nombreArchivoActual)
 				if err != nil {
 					fmt.Println(err)
 					return
 				}
-				fTxt.Close()
+
+				// verificar si esta vacio
+				dtll, err := fTxt.Stat()
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+
+				if dtll.Size() == 0 {
+					fmt.Println("Error: No relleno data en archivos")
+					return
+				}
+
+				err = fTxt.Close()
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+
 				archivos = archivos + 2
 				fmt.Println(nombreArchivoActual)
 				fmt.Println(nombreArchivoActualTXT)
