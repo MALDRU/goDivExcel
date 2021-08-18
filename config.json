@@ -1,0 +1,33 @@
+{
+  "ruta_plantillas": "ruta/donde/estan/las/_PLANTILLAS",
+  "ruta_exportacion": "../OUT",
+  "formato": "%s_%s_%s_%s_PLA_%s_%s",
+  "DB" : {
+    "alias": "DB",
+    "plantilla": "DATOS_BASICOS.xlsx",
+    "nombre_hoja": "PLANTILLA",
+    "fila_inicial": 8,
+    "celda_inicial": 2
+  },
+  "DD" : {
+    "alias": "DD",
+    "plantilla": "DATOS_DIRECCION.xlsx",
+    "nombre_hoja": "Hoja1",
+    "fila_inicial": 7,
+    "celda_inicial": 2
+  },
+  "SR" : {
+    "alias": "SR",
+    "plantilla": "SESIONES_REGISTRO.xlsx",
+    "nombre_hoja": "Sheet1",
+    "fila_inicial": 9,
+    "celda_inicial": 2
+  },
+  "PR" : {
+    "alias": "PR",
+    "plantilla": "PROGRESIONES.xlsx",
+    "nombre_hoja": "Plantilla",
+    "fila_inicial": 9,
+    "celda_inicial": 2
+  }
+}
