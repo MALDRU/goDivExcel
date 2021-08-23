@@ -9,13 +9,18 @@ type cli struct {
 }
 
 var (
-	archivoDatos string
-	archivoConfig string
+	archivoDatos      string
+	archivoConfig     string
 	ignorarEncabezado bool
-	genDB bool
-	genDD bool
-	genSR bool
-	genPR bool
+	genDB             bool
+	genDD             bool
+	genSR             bool
+	genPR             bool
+	genSE             bool
+	genRA             bool
+	genTA             bool
+	genIN             bool
+	genST             bool
 )
 
 func (cli) inicializar() {
@@ -26,6 +31,11 @@ func (cli) inicializar() {
 	flag.BoolVar(&genDD, "dd", false, "Genera plantillas de datos direccion")
 	flag.BoolVar(&genSR, "sr", false, "Genera plantillas de sesiones de registro")
 	flag.BoolVar(&genPR, "pr", false, "Genera plantillas de progresiones")
+	flag.BoolVar(&genSE, "se", false, "Genera plantillas de sesiones de estudio")
+	flag.BoolVar(&genRA, "ra", false, "Genera plantillas de registros de admision")
+	flag.BoolVar(&genTA, "ta", false, "Genera plantillas de trabajos academicos")
+	flag.BoolVar(&genIN, "in", false, "Genera plantillas de indices")
+	flag.BoolVar(&genST, "st", false, "Genera plantillas de estatus")
 	flag.Parse()
 	if archivoDatos == "" || archivoConfig == "" || !(genDB || genDD || genSR || genPR) {
 		log.Fatalln("Debe indicar el archivo de origen de datos, el de configuracion y minimo una plantilla a generar. Mas informacion ingrese -help")

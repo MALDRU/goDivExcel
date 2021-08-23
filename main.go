@@ -15,7 +15,7 @@ import (
 var (
 	tipoPlantilla string
 	configuracion map[string]interface{}
-	rutaSalida string
+	rutaSalida    string
 	formatoSalida string
 	prefijoSalida string
 )
@@ -24,7 +24,7 @@ func main() {
 	inicializar()
 }
 
-func inicializar () {
+func inicializar() {
 	// inicializar cli
 	cli{}.inicializar()
 
@@ -59,6 +59,21 @@ func inicializar () {
 	if genPR {
 		tipoPlantilla = "PR"
 	}
+	if genSE {
+		tipoPlantilla = "SE"
+	}
+	if genRA {
+		tipoPlantilla = "RA"
+	}
+	if genTA {
+		tipoPlantilla = "TA"
+	}
+	if genIN {
+		tipoPlantilla = "IN"
+	}
+	if genST {
+		tipoPlantilla = "ST"
+	}
 
 	// crear carpetas de salida
 	rutaSalida = fmt.Sprintf("%s/%s", configuracion["ruta_exportacion"], configuracion[tipoPlantilla].(map[string]interface{})["alias"])
@@ -86,4 +101,3 @@ func inicializar () {
 	x := ctrArchivo{}
 	x.iniciar(tipo)
 }
-
