@@ -30,7 +30,7 @@ func inicializar() {
 
 	// validar ext
 	tipo := filepath.Ext(archivoDatos)
-	if tipo != ".ctrArchivo" && tipo != ".csv" {
+	if tipo != ".xlsx" && tipo != ".csv" {
 		log.Fatalln("El archivo de origen de datos debe ser: .csv o .ctrArchivo")
 	}
 

@@ -24,7 +24,7 @@ var (
 )
 
 func (cli) inicializar() {
-	flag.StringVar(&archivoDatos, "archivo", "", "Archivo donde se extraeran los datos (.csv | .ctrArchivo)")
+	flag.StringVar(&archivoDatos, "archivo", "", "Archivo donde se extraeran los datos (.csv | .xlsx)")
 	flag.StringVar(&archivoConfig, "config", "config.json", "Archivo de configuracion")
 	flag.BoolVar(&ignorarEncabezado, "sinEncabezado", false, "Ignora la primera fila del archivo")
 	flag.BoolVar(&genDB, "db", false, "Genera plantillas de datos basicos")
@@ -37,7 +37,7 @@ func (cli) inicializar() {
 	flag.BoolVar(&genIN, "in", false, "Genera plantillas de indices")
 	flag.BoolVar(&genST, "st", false, "Genera plantillas de estatus")
 	flag.Parse()
-	if archivoDatos == "" || archivoConfig == "" || !(genDB || genDD || genSR || genPR) {
+	if archivoDatos == "" || archivoConfig == "" || !(genDB || genDD || genSR || genPR || genSE || genRA || genTA || genIN || genST) {
 		log.Fatalln("Debe indicar el archivo de origen de datos, el de configuracion y minimo una plantilla a generar. Mas informacion ingrese -help")
 	}
 }
