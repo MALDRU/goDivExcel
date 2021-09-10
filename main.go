@@ -74,6 +74,12 @@ func inicializar() {
 	if genST {
 		tipoPlantilla = "ST"
 	}
+	if genMEP {
+		tipoPlantilla = "MEP"
+	}
+	if genDA {
+		tipoPlantilla = "DA"
+	}
 
 	// crear carpetas de salida
 	rutaSalida = fmt.Sprintf("%s/%s", configuracion["ruta_exportacion"], configuracion[tipoPlantilla].(map[string]interface{})["alias"])

@@ -21,6 +21,8 @@ var (
 	genTA             bool
 	genIN             bool
 	genST             bool
+	genMEP            bool
+	genDA             bool
 )
 
 func (cli) inicializar() {
@@ -36,8 +38,10 @@ func (cli) inicializar() {
 	flag.BoolVar(&genTA, "ta", false, "Genera plantillas de trabajos academicos")
 	flag.BoolVar(&genIN, "in", false, "Genera plantillas de indices")
 	flag.BoolVar(&genST, "st", false, "Genera plantillas de estatus")
+	flag.BoolVar(&genMEP, "mep", false, "Genera plantillas de meritos externos prostgrado")
+	flag.BoolVar(&genDA, "da", false, "Genera plantillas de datos academicos")
 	flag.Parse()
-	if archivoDatos == "" || archivoConfig == "" || !(genDB || genDD || genSR || genPR || genSE || genRA || genTA || genIN || genST) {
+	if archivoDatos == "" || archivoConfig == "" || !(genDB || genDD || genSR || genPR || genSE || genRA || genTA || genIN || genST || genMEP || genDA) {
 		log.Fatalln("Debe indicar el archivo de origen de datos, el de configuracion y minimo una plantilla a generar. Mas informacion ingrese -help")
 	}
 }
